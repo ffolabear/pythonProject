@@ -1,6 +1,4 @@
-# Section04-1.py
-# 데이터 타입
-# Section04-1.py
+# Section03
 # 데이터 타입
 
 
