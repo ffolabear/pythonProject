@@ -1,7 +1,6 @@
 # Section03
 # 데이터 타입
 
-
 # 변수에 값 할당하기
 str1 = "Nice"
 bool1 = False
