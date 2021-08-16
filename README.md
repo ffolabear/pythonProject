@@ -2,7 +2,7 @@
 #### 파이썬 개념 정리
 </br>
 
-- Section01
+1. Section01
   - print 함수  
 </br>
 
