@@ -3,7 +3,7 @@
 </br>
 
 1. Section01
-   print 함수  
+  * print 함수  
 </br>
 
 ##### Section02
