@@ -1,5 +1,5 @@
 # Section05-2
-# 파이썬 흐름제어(제어문)
+# 파이썬 흐름제어(반복문)
 # 반복문 실습
 
 # 코딩의 핵심 -> 조건 해결 중요
@@ -38,10 +38,8 @@ print('1 ~ 100 합 : ', sum(range(1, 101)))
 # 1부터 100까지 중 3개 단위로 건너뜀
 print('1 ~ 100 안에 3의 배수의 합 : ', sum(range(1, 101, 2)))
 
-
 print()
 print()
-
 
 # break
 # 조건에 맞을때 반복문을 중지시킬때 사용 -> 효율성을 증가
@@ -60,7 +58,6 @@ for i in numbers:
 print()
 print()
 
-
 # 파이썬에는 for - else 구문이 있음
 # 반복문이 정상 종료됐을때 실행
 
@@ -73,10 +70,8 @@ for i in numbers:
 else:
     print("찾는 숫자가 존재하지 않음")
 
-
 print()
 print()
-
 
 # continue
 
