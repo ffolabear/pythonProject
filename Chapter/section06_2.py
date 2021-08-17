@@ -1,4 +1,4 @@
-# Section06
+# Section06_2
 # 파이썬 람다식
 
 
