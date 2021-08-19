@@ -3,7 +3,7 @@
 </br>
 
 - Section01
-  - print 함수  
+  - print 함수 
 
 - Section02
   - 파이썬 둘러보기  
