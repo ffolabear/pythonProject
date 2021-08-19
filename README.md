@@ -1,8 +1,8 @@
 # pythonProject
-#### 파이썬 개념 정리
+- 파이썬 개념 정리
 </br>
 
-#### Section01
+- Section01
   - print 함수  
 
 #### Section02
