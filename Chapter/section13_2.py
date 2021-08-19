@@ -16,12 +16,11 @@ conn = sqlite3.connect('./resource/gameScore.db', isolation_level=None)
 
 # Cursor 연결
 cursor = conn.cursor()
-cursor.execute("CREATE TABLE IF NOT EXISTS gameScore (id INTEGER PRIMARY KEY AUTOINCREMENT, cor_cnt INTEGER, record text, regdate text)")
-
+cursor.execute(
+    "CREATE TABLE IF NOT EXISTS gameScore (id INTEGER PRIMARY KEY AUTOINCREMENT, cor_cnt INTEGER, record text, regdate text)")
 
 # 맥에서 사용하기 위한 모듈 초기화
 pygame.init()
-
 
 # 영어단어 리스트
 words = []
@@ -46,7 +45,6 @@ input("Press Enter when you ready!")
 # 게임 시작 시간
 start = time.time()
 
-
 # 게임은 총 5번 실행
 while n <= 5:
     random.shuffle(words)
@@ -60,7 +58,7 @@ while n <= 5:
     x = input()
     print()
 
-    if(str(q).strip() == str(x).strip()):
+    if (str(q).strip() == str(x).strip()):
         print("Correct!")
         # 정답 소리 재생
         cor_sound = pygame.mixer.Sound("./sound/good.wav")
@@ -89,19 +87,12 @@ if cor_cnt >= 3:
 else:
     print("불합격")
 
-
 # 기록 DB 삽입
-cursor.execute("INSERT INTO gameScore('cor_cnt', 'record', 'regdate') VALUES (?, ?, ?)", (cor_cnt, playtime, datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+cursor.execute("INSERT INTO gameScore('cor_cnt', 'record', 'regdate') VALUES (?, ?, ?)",
+               (cor_cnt, playtime, datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
 
 print("게임 시간 : ", playtime, "초", "정답 개수 : {}".format(cor_cnt))
-
 
 # 시작 지점
 if __name__ == '__main__':
     pass
-
-
-
-
-
-

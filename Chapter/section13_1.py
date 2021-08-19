@@ -29,7 +29,6 @@ input("Press Enter when you ready!")
 # 게임 시작 시간
 start = time.time()
 
-
 # 게임은 총 5번 실행
 while n <= 5:
     random.shuffle(words)
@@ -43,7 +42,7 @@ while n <= 5:
     x = input()
     print()
 
-    if(str(q).strip() == str(x).strip()):
+    if (str(q).strip() == str(x).strip()):
         print("Correct!")
         # 정답 1증가
         cor_cnt += 1
@@ -65,16 +64,8 @@ if cor_cnt >= 3:
 else:
     print("불합격")
 
-
 print("게임 시간 : ", playtime, "초", "정답 개수 : {}".format(cor_cnt))
-
 
 # 시작 지점
 if __name__ == '__main__':
     pass
-
-
-
-
-
-
