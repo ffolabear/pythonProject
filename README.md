@@ -77,8 +77,8 @@
 #### Section11
 - 외부 파일 처리
 
-#### Section12
+#### Section12_1
 - 데이터베이스 연동(sqlite3)
 
-#### Section12
+#### Section12_2
 - 데이터베이스 데이터조회
