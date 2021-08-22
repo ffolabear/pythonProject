@@ -55,4 +55,11 @@
 - Section13_2 : 타이핑 게임 업그레이드
 
 - Section14 : 객체 참조와 복사
+
+
+### 파이썬 자료구조
+</br>
   
+- Section01 : list
+- Section02 : queue
+
