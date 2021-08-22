@@ -73,7 +73,9 @@ def enque(data):
 
 
 def deque():
-    return list_queue[len(list_queue) - 1]
+    data = list_queue[0]
+    del list_queue[0]
+    return data
 
 
 def qsize():
