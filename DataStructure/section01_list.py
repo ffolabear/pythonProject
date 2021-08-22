@@ -11,7 +11,7 @@
 
 # 단점:
 # 데이터 추가/삭제의 어려움
-# 미리 최대 길이를 지정해야 함
+# 미리 최대 길이를 지정해야 함 (파이썬은 해당사항없음)
 
 
 # 1차원 배열: 리스트로 구현시
@@ -21,6 +21,16 @@ print(data_list)
 # 2차원 배열: 리스트로 구현시
 data_list2 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 print(data_list2)
+
+print()
+print()
+
+# 파이썬 배열은 동적
+# 자바의 Collection framework List 와 비슷
+lenTest = [1, 2, 4]
+print(len(lenTest))
+del lenTest[2]
+print(len(lenTest))
 
 print()
 print()
@@ -71,7 +81,7 @@ count = 0
 
 for word in dataset:
     for char in word:
-    # 혹은 for char in range(len(word))
+        # 혹은 for char in range(len(word))
 
         if char == 'M':
             count += 1
