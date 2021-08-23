@@ -89,14 +89,13 @@ class NodeMgmt:
             return True
         else:
             node = self.tail
-
             while node.data != target:
                 node = node.prev
                 if node is None:
                     return False
 
             # 현재 상황
-            # ⬅ 탐색방향
+            # ⬅️ 탐색방향
             # node.prev(prev_new) | new | node
 
             new = Node(data)
@@ -109,12 +108,13 @@ class NodeMgmt:
             node.prev = new
             return True
 
-    # 예제: 특정값 뒤에 데이터를 추가하는 함수 만들기
-    # 조건: head 에서부터 탐색
+    # # 예제: 특정값 뒤에 데이터를 추가하는 함수 만들기
+    # # 조건: head 에서부터 탐색
     def insert_after(self, target, data):
-        if self.head is None:
+        if self.head == None:
             self.head = Node(data)
             return True
+
         else:
             node = self.head
 
@@ -123,12 +123,15 @@ class NodeMgmt:
                 if node is None:
                     return False
             # 현재 상황
-            # 탐색방향 ➡
+            # 탐색방향 ➡️
             # node | new | node.next (next_new)
 
             new = Node(data)
 
             next_new = node.next
+            # 강의랑 다른 오류부분 추가
+            next_new.prev = new
+
             new.next = next_new
             new.prev = node
             node.next = new
@@ -153,31 +156,12 @@ for i in range(1, 11):
 double_list.info()
 print()
 
-print(" >> 0 ~ 10중 6을 제거")
-double_list.delete(6)
-double_list.info()
-
-print()
-
-print(" >> 0 ~ 10중 head 값 0을 제거")
-double_list.delete(0)
-double_list.info()
-
-# head 를 지우자 1로 head가 바뀐것을 볼 수있음
-print()
-print(double_list.head.data)
-
-print()
-
 double_list.insert_before(4, 12)
-double_list.info()
-print()
+double_list.insert_after(4, 66)
 
-double_list.insert_after(4, 44)
-double_list.info()
+print(double_list.search_from_head(12).data)
+print(double_list.search_from_head(66).data)
 
-print()
-print(double_list.search_from_head(44).data)
-print(double_list.search_from_tail(44))
-print(double_list.tail.data)
+print(double_list.search_from_tail(12).data)
+print(double_list.search_from_tail(66).data)
 
