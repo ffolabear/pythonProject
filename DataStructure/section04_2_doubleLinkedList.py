@@ -40,63 +40,106 @@ class NodeMgmt:
             del temp
         else:
             node = self.head
-            while node.next:
-                if node.next.data == data:
-                    temp = node.next
-                    # 일반 링크드리스트와 다르게 앞뒤를 다르게 연결해줘야함
-                    node.next = node.next.next
-                    node.next.next.prev = node
-                    del temp
-                    return
-                else:
-                    node = node.next
+
+            while node.data != data:
+                node = node.next
+
+            node_prev = node.prev
+
+            node.prev.next = node.next
+            node.next.prev = node_prev
+            del node
+            return
+
+    # 예제: 특정값을 머리에서부터 탐색
+    def search_from_head(self, data):
+
+        if self.head is None:
+            print("노드가 존재하지않습니다.")
+            return False
+
+        node = self.head
+        while node:
+            if node.data == data:
+                return node
+            else:
+                node = node.next
+        return False
+
+    # 예제: 특정값을 꼬리에서부터 탐색
+    def search_from_tail(self, data):
+
+        if self.head is None:
+            print("노드가 존재하지않습니다.")
+            return False
+
+        node = self.tail
+        while node:
+            if node.data == data:
+                return node
+            else:
+                node = node.prev
+        return False
 
     # 예제: 특정값 앞에 데이터를 추가하는 함수 만들기
     # 조건: tail 에서부터 탐색
-    def insert_before(self, target,data):
+    def insert_before(self, target, data):
         if self.head is None:
-            Node(data)
-
+            self.head = Node(data)
+            return True
         else:
             node = self.tail
 
-            while node.prev:
-                if node.prev.data == target:
-                    # 만약 이전 노드가 head 라면
-                    if node.prev == self.head:
-                        old_head = self.head
-                        new = Node(data)
+            while node.data != target:
+                node = node.prev
+                if node is None:
+                    return False
 
-                        # 새로운 노드를 head로 만들어주기
-                        self.head = new
-                        new.next = old_head
+            # 현재 상황
+            # ⬅ 탐색방향
+            # node.prev(prev_new) | new | node
 
-                        # 이전 head를 연결해주는 작업
-                        old_head.prev = new
+            new = Node(data)
+            prev_new = node.prev
+            prev_new.next = new
 
-                    # 만약 이전 노드가 head가 아니라면
-                    else:
-                        new = Node(data)
+            new.prev = prev_new
+            new.next = node
 
-
-                else:
-                    node = node.prev
-
-
-
-
-
-
-
+            node.prev = new
+            return True
 
     # 예제: 특정값 뒤에 데이터를 추가하는 함수 만들기
-    def insert_after(self, data):
+    # 조건: head 에서부터 탐색
+    def insert_after(self, target, data):
         if self.head is None:
-            Node(data)
+            self.head = Node(data)
+            return True
+        else:
+            node = self.head
+
+            while node.data != target:
+                node = node.next
+                if node is None:
+                    return False
+            # 현재 상황
+            # 탐색방향 ➡
+            # node | new | node.next (next_new)
+
+            new = Node(data)
+
+            next_new = node.next
+            new.next = next_new
+            new.prev = node
+            node.next = new
+
+            if new.next is None:
+                self.tail = new
+            return True
 
     def info(self):
         node = self.head
-        while node.next:
+        while node:
             print(node.data)
             node = node.next
 
@@ -123,3 +166,18 @@ double_list.info()
 # head 를 지우자 1로 head가 바뀐것을 볼 수있음
 print()
 print(double_list.head.data)
+
+print()
+
+double_list.insert_before(4, 12)
+double_list.info()
+print()
+
+double_list.insert_after(4, 44)
+double_list.info()
+
+print()
+print(double_list.search_from_head(44).data)
+print(double_list.search_from_tail(44))
+print(double_list.tail.data)
+
