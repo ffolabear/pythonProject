@@ -60,6 +60,12 @@
 ### 파이썬 자료구조
 </br>
   
-- Section01 : list
-- Section02 : queue
+- Section01 : List
+- Section02 : Queue
+- Section03 : Stack
+- Section04_1 : Linkedlist
+- Section04_2 : Double Linkedlist
+- Section05_1 : Hash Table
+- Section05_2_1 : Hash Table (Chaining)
+- Section05_2_1 : Hash Table (Linear)
 
