@@ -1,18 +1,49 @@
 # 파이썬 자료구조
-# 5. 헤쉬 테이블 구현 - 충돌 개선 - Linear probing
+# 5. 헤쉬 테이블  - 충돌 개선
 
-# 해쉬 값이 충돌될때 해결방법
 
-# Linear probing
-# 폐쇄 해슁 또는 Close Hashing 기법 중 하나: 해쉬 테이블 저장공간 안에서 충돌 문제를 해결하는 기법
-# 충돌이 일어나면, 해당 hash address의 다음 address부터 맨 처음 나오는 빈공간에 저장하는 기법
+# 파이썬의 hash() 함수는 실행할 때마다, 값이 달라질 수 있음
+# 유명한 해쉬 함수들이 있음: SHA(Secure Hash Algorithm, 안전한 해시 알고리즘)
+# 어떤 데이터도 유일한 고정된 크기의 고정값을 리턴해주므로, 해쉬 함수로 유용하게 활용 가능
 
+
+# SHA-1
+import hashlib
+
+data = 'test'.encode()
+print(data)
+hash_object = hashlib.sha1()
+
+# 해쉬값이 오브젝트에 들어있는 상태
+hash_object.update(data)
+hex_digit = hash_object.hexdigest()
+print(hex_digit)
+
+# 데이터 -> 바이트로 인코딩 -> 16진수로 변환
+
+print()
+
+# SHA-256
+hash_object_256 = hashlib.sha256()
+
+hash_object_256.update(data)
+hex_digit = hash_object_256.hexdigest()
+print(hex_digit)
+
+# 어떤 데이터를 넣던 고정된 길이의 일관된 값을 얻기 떄문에 사용한다.
+# 얻은 해쉬값으로 원래 데이터를 추론할수없기 때문에 안전하다.
+
+# 헤쉬 테이블에 적용해보기
 
 hash_table = list([0 for i in range(8)])
 
 
+# 이 부분만 변경해주면됨
 def get_key(data):
-    return hash(data)
+    hash_256 = hashlib.sha256()
+    hash_256.update(data.encode())
+    hex_digit_256 = hash_256.hexdigest()
+    return int(hex_digit_256, 16)
 
 
 def hash_function(key):
@@ -62,3 +93,5 @@ print((hash('apple')) % 8)
 print((hash('abc')) % 8)
 
 print(hash_table)
+
+
