@@ -64,6 +64,62 @@ class NodeMgmt:
                 self.current_node = self.current_node.right
         return False
 
+    def delete(self, value):
+
+        # 삭제할 노드의 존재여부 파악
+        searched = False
+        self.current_node = self.head
+        self.parent = self.head
+        while self.current_node:
+            if self.current_node.value == value:
+                searched = True
+                break
+            elif value < self.current_node.value:
+                self.parent = self.current_node
+                self.current_node = self.current_node.left
+            else:
+                self.parent = self.current_node
+                self.current_node = self.current_node.right
+
+        if searched is False:
+            return False
+
+        # 1. 삭제할 노드가 leaf 노드일때
+        if self.current_node.left is None and self.current_node.right is None:
+            # leaf 노드가 부모보다 작으면 왼쪽, 크면 오른쪽
+            if value < self.parent.value:
+                self.parent.left = None
+            else:
+                self.parent.right = None
+            del self.current_node
+
+        # 2. 삭제할 노드의 자식 노드가 1개일때
+
+        # 현재 노드가 왼쪽에만 자식 노드를 가지고 있을 경우
+        if self.current_node.left is not None and self.current_node.right is None:
+            # 삭제할 노드가 부모 노드의 왼쪽에 있는 경우
+            if value < self.parent.value:
+                self.parent.left = self.current_node.left
+            else:
+                self.parent.right = self.current_node.left
+
+        # 현재 노드가 오른쪽에만 자식 노드를 가지고 있을 경우
+        elif self.current_node.left is None and self.current_node.right is not None:
+            # 삭제할 노드가 부모 노드의 오른쪽에 있는 경우
+            if value < self.parent.value:
+                self.parent.left = self.current_node.right
+            else:
+                self.parent.right = self.current_node.right
+
+
+    # 3. 삭제할 노드의 자식 노드가 2개일때
+
+    #    - 삭제할 Node의 오른쪽 자식 중, 왼쪽값(가장 작은 값)을 삭제할 Node의 Parent Node가 가리키도록 한다. ⭐
+    #      - 삭제 노드의 왼쪽 노드 보다 크면서 오른쪽 노드중 가장 작은 값이기 때문
+
+    #    - 삭제할 Node의 왼쪽 자식 중, 오른쪽 값(가장 큰 값을) 삭제할 Node의 Parent Node가 가리키도록 한다.
+    #      - 삭제 노드의 왼쪽 노드 중 가장 크면서 오른쪽 노드들 보다 작기 때문
+
 
 head = Node(1)
 bst = NodeMgmt(head)
