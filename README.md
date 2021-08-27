@@ -78,4 +78,6 @@
 
 - Section05_3 : Hash Table 충돌방지기법
 
-- Section06 : Tree(BST) 완료
+- Section06 : Tree(BST) 
+
+- Section07 : Heap 
