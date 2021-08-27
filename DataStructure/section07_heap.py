@@ -28,3 +28,139 @@
 
 # 이진 탐색 트리는 탐색을 위한 구조
 # 힙은 최대/최소값 검색을 위한 구조
+
+# ‼️ 힙의 주요 특징
+# 부모 노드 인덱스 번호 : 자식 노드 인덱스 번호  // 2
+# 왼쪽 자식 노드 인덱스 번호 : 부모 노드 인덱스 번호  * 2
+# 오른쪽 자식 노드 인덱스 번호 : 부모 노드 인덱스 번호  * 2 + 1
+
+class Heap:
+    def __init__(self, data):
+        self.heap_array = list()
+        self.heap_array.append(None)
+        self.heap_array.append(data)
+
+    def move_up(self, inserted_idx):
+
+        if inserted_idx <= 1:
+            return False
+
+        parent_idx = inserted_idx // 2
+        if self.heap_array[inserted_idx] > self.heap_array[parent_idx]:
+            return True
+        else:
+            return False
+
+    def insert(self, data):
+        if len(self.heap_array) == 1:
+            self.heap_array.append(data)
+            return True
+
+        self.heap_array.append(data)
+        # 마지막으로 넣은 원소의 인덱스 번호
+        inserted_idx = len(self.heap_array) - 1
+
+        while self.move_up(inserted_idx):
+            parent_idx = inserted_idx // 2
+            self.heap_array[inserted_idx], self.heap_array[parent_idx] = self.heap_array[parent_idx], self.heap_array[
+                inserted_idx]
+            # Heap 의 기본 조건을 만족시키기 위해 바꾸는 작업을 계속해줘야 하므로 바꿔줌
+            inserted_idx = parent_idx
+        return True
+
+    def move_down(self, popped_idx):
+
+        # popped_idx 의 왼쪽, 오른쪽 자식 인덱스 번호
+        left_child_popped_idx = popped_idx * 2
+        right_child_popped_idx = popped_idx * 2 + 1
+
+        # 1. 왼쪽 자식이 없는 경우 = 자식 노드가 없는 경우
+        if left_child_popped_idx >= len(self.heap_array):
+            # 바꿔줄 필요가 없음
+            return False
+
+        # 2. 왼쪽 자식만 있는 경우
+        elif right_child_popped_idx >= len(self.heap_array):
+            if self.heap_array[popped_idx] < self.heap_array[left_child_popped_idx]:
+                return True
+            else:
+                return False
+
+        # 3. 둘다 있는 경우
+        else:
+            # 왼쪽 자식 노드가 더 클 경우
+            if self.heap_array[left_child_popped_idx] > self.heap_array[right_child_popped_idx]:
+                # 왼쪽 자식노드가 부모 노드보다 크다면 바꿔줘야함
+                if self.heap_array[popped_idx] < self.heap_array[left_child_popped_idx]:
+                    return True
+                else:
+                    return False
+            # 오른쪽 자식 노드가 더 클 경우
+            else:
+                # 오른쪽 자식노드가 부모 노드보다 크다면 바꿔줘야함
+                if self.heap_array[popped_idx] < self.heap_array[right_child_popped_idx]:
+                    return True
+                else:
+                    return False
+
+    # 힙에서 특정 데이터의 삭제기능은 없음
+    def pop(self):
+        if len(self.heap_array) <= 1:
+            return None
+
+        # 최댓값이자 루트 노드
+        returned_data = self.heap_array[1]
+
+        # 가장 마지막에 추가된 값(가장 마지막값)을 루트노드로 올려주기
+        self.heap_array[1] = self.heap_array[-1]
+        del self.heap_array[-1]
+
+        # 추출된 데이터
+        popped_idx = 1
+
+        while self.move_down(popped_idx):
+
+            # popped_idx 의 왼쪽, 오른쪽 자식 인덱스 번호
+            left_child_popped_idx = popped_idx * 2
+            right_child_popped_idx = popped_idx * 2 + 1
+
+            # 2. 왼쪽 자식만 있는 경우
+            if right_child_popped_idx >= len(self.heap_array):
+                if self.heap_array[popped_idx] < self.heap_array[left_child_popped_idx]:
+                    self.heap_array[popped_idx], self.heap_array[left_child_popped_idx] = self.heap_array[left_child_popped_idx], self.heap_array[popped_idx]
+                    # 데이터를 바꿔준 다음 popped_idx 의 위치를 내려준다
+                    popped_idx = left_child_popped_idx
+
+            # 3. 둘다 있는 경우
+            else:
+                # 왼쪽 자식 노드가 더 클 경우
+                if self.heap_array[left_child_popped_idx] > self.heap_array[right_child_popped_idx]:
+                    # 왼쪽 자식노드가 부모 노드보다 크다면 바꿔줘야함
+                    if self.heap_array[popped_idx] < self.heap_array[left_child_popped_idx]:
+                        self.heap_array[popped_idx], self.heap_array[left_child_popped_idx] = self.heap_array[left_child_popped_idx], self.heap_array[popped_idx]
+                        popped_idx = left_child_popped_idx
+
+                # 오른쪽 자식 노드가 더 클 경우
+                else:
+                    # 오른쪽 자식노드가 부모 노드보다 크다면 바꿔줘야함
+                    if self.heap_array[popped_idx] < self.heap_array[right_child_popped_idx]:
+                        self.heap_array[popped_idx], self.heap_array[right_child_popped_idx] = self.heap_array[right_child_popped_idx], self.heap_array[popped_idx]
+                        popped_idx = left_child_popped_idx
+
+        return returned_data
+
+
+
+heap = Heap(15)
+heap.insert(10)
+heap.insert(8)
+heap.insert(5)
+heap.insert(4)
+heap.insert(20)
+
+print(heap.pop())
+print(heap.pop())
+print(heap.pop())
+print(heap.pop())
+
+print(heap.heap_array)
