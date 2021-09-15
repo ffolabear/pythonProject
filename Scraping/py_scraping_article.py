@@ -13,7 +13,7 @@ soup = BeautifulSoup(req, 'html.parser')
 
 articles = soup.select('#main_pack > section.sc_new.sp_nnews._prs_nws > div > div.group_news > ul > li')
 
-
+#main_pack > section.sc_new.sp_nnews._prs_nws > div > div.group_news > ul
 #main_pack > section.sc_new.sp_nnews._prs_nws > div > div.group_news > ul
 #sp_nws1 > div.news_wrap.api_ani_send > div > a
 #sp_nws11 > div.news_wrap.api_ani_send > div > div.news_info > div.info_group > a.info.press
