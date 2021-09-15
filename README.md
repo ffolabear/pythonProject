@@ -58,6 +58,8 @@
 
 - Section15 : 객체지향 문법 사용해보기
 
+</br>
+
 
 ### 파이썬 자료구조
 </br>
@@ -83,6 +85,8 @@
 - Section06 : Tree(BST) 
 
 - Section07 : Heap 
+
+</br>
 
 ### 파이썬 크롤링
 </br>
