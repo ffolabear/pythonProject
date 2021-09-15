@@ -83,3 +83,14 @@
 - Section06 : Tree(BST) 
 
 - Section07 : Heap 
+
+### 파이썬 크롤링
+</br>
+
+- py_scraping : 이미지 검색해서 디렉토리안에 저장하기
+
+- py_scraping_article : 원하는 키워드의 기사에 대한 정보를 xlsx 파일로 저장하기 
+
+- py_email : 크롤링한 데이터를 원하는 이메일에 첨부해서 보내기
+
+
